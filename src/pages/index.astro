@@ -1,11 +1,40 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import BaseLayout from "@/layouts/base-layout.astro";
 import { buttonVariants } from "@/components/ui/button";
-import Card from "@/components/Card.astro";
+import Card from "@/components/card.astro";
+import Datatable, { type Payment } from "@/components/react/data-table";
+
+const data: Payment[] = [
+  {
+    id: "728ed52f",
+    amount: 100,
+    status: "pending",
+    email: "m@example.com",
+  },
+  {
+    id: "489e1d42",
+    amount: 125,
+    status: "processing",
+    email: "example@gmail.com",
+  },
+  {
+    id: "846gd24t",
+    amount: 140,
+    status: "success",
+    email: "astro@shadcn.com",
+  },
+  {
+    id: "354am773",
+    amount: 200,
+    status: "failed",
+    email: "astro@shadcn.com",
+  },
+  // ...
+];
 ---
 
 <BaseLayout
-  title="Astro Shadcn UI Template"
+  title="astro + shadcn"
   description="This template helps you build apps with Astro, Tailwind CSS, and Shadcn UI."
 >
   <section class="container grid items-center gap-6 pb-8 pt-6 md:py-10">
@@ -40,6 +69,10 @@ import Card from "@/components/Card.astro";
       </a>
     </div>
   </section>
+  <div class="container my-5">
+    <h4 class="font-light text-neutral-500">Example datatable with shadcn</h4>
+    <Datatable client:idle data={data} />
+  </div>
   <section class="container">
     <h3 class="font-semibold text-3xl my-3">About Astro</h3>
     <div class="container gap-2 grid grid-cols-1 md:grid-cols-2">
